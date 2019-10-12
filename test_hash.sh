@@ -9,3 +9,5 @@ run test_style pycodestyle hash_tables.py
 assert_no_stdout
 run test_style pycodestyle test_hash.py
 assert_no_stdout
+run test_style pycodestyle scatter.py
+assert_no_stdout

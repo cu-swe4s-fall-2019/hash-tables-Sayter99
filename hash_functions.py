@@ -1,3 +1,6 @@
+import argparse
+import os
+
 
 def h_ascii(key, N):
     if (not isinstance(key, str)):
@@ -48,3 +51,22 @@ def h_rolling(key, N, p=53, m=2**64):
         s += ord(key[i]) * p**i
     s = s % m
     return s % N
+
+
+if __name__ == '__main__':
+    # adding arguments
+    parser = argparse.ArgumentParser(
+        description='Implementation of hash functions',
+        prog='hash_functions')
+
+    parser.add_argument('--input', type=str, help='Name of the intput file')
+    parser.add_argument('--hash_method', type=str, help='ascii/rolling')
+
+    args = parser.parse_args()
+
+    if (os.path.exists(args.input)):
+        for l in open(args.input):
+            if (args.hash_method == 'ascii'):
+                print(h_ascii(l, 100000))
+            elif (args.hash_method == 'rolling'):
+                print(h_rolling(l, 100000))

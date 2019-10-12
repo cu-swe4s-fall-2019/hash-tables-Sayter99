@@ -1,4 +1,5 @@
 import hash_functions
+import argparse
 
 
 class LinearProbe:
