@@ -21,6 +21,16 @@ assert_exit_code 0
 run test_hash_functions python hash_functions.py --input non_rand_words.txt --hash_method rolling
 assert_exit_code 0
 
+run bad_input python hash_functions.py --input _rand_words.txt --hash_method ascii
+assert_exit_code 1
+assert_stdout
+run bad_input python hash_functions.py --input _rand_words.txt --hash_method _ascii
+assert_exit_code 1
+assert_stdout
+run bad_input python hash_tables.py --size 10000 --hash_method rolling --collision_strategy linear --input _rand_words.txt --key_nums 1000 --search_nums 100
+assert_exit_code 1
+assert_stdout
+
 for M in $(seq 1000 1000 10000); do
     python hash_tables.py --size 10000 --hash_method rolling --collision_strategy linear --input rand_words.txt --key_nums $M --search_nums 100 > test_rolling_linear_rand.$M.txt
 done
