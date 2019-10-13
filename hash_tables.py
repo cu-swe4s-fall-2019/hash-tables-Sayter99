@@ -3,6 +3,7 @@ import argparse
 import sys
 import time
 import random
+import os
 
 
 def reservoir_sampling(new_val, size, V):
@@ -118,6 +119,10 @@ if __name__ == '__main__':
             ht = ChainedHash(N, hash_functions.h_rolling)
 
     V = []
+
+    if (not os.path.exists(data_file_name)):
+        print('Cannot find input file')
+        sys.exit(1)
 
     for l in open(data_file_name):
         reservoir_sampling(l, keys_to_search, V)
