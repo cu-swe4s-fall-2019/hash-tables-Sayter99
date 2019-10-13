@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 
 
 def h_ascii(key, N):
@@ -59,8 +60,10 @@ if __name__ == '__main__':
         description='Implementation of hash functions',
         prog='hash_functions')
 
-    parser.add_argument('--input', type=str, help='Name of the intput file')
-    parser.add_argument('--hash_method', type=str, help='ascii/rolling')
+    parser.add_argument('--input', type=str,
+                        help='Name of the intput file', required=True)
+    parser.add_argument('--hash_method', type=str,
+                        help='ascii/rolling', required=True)
 
     args = parser.parse_args()
 
@@ -70,3 +73,9 @@ if __name__ == '__main__':
                 print(h_ascii(l, 100000))
             elif (args.hash_method == 'rolling'):
                 print(h_rolling(l, 100000))
+            else:
+                print('Invalid hash method')
+                sys.exit(1)
+        sys.exit(0)
+    print('Cannot find input file')
+    sys.exit(1)

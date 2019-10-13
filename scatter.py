@@ -1,8 +1,8 @@
+import matplotlib.pyplot as plt
 import sys
 import argparse
 import matplotlib
 matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     # adding arguments
@@ -10,9 +10,12 @@ if __name__ == '__main__':
         description='A script to draw scatter plot from STDIN.',
         prog='scatter')
 
-    parser.add_argument('--out_file', type=str, help='Name of the output file')
-    parser.add_argument('--x_label', type=str, help='Label of X-axis')
-    parser.add_argument('--y_label', type=str, help='Label of y-axis')
+    parser.add_argument('--out_file', type=str,
+                        help='Name of the output file', required=True)
+    parser.add_argument('--x_label', type=str,
+                        help='Label of X-axis', required=True)
+    parser.add_argument('--y_label', type=str,
+                        help='Label of y-axis', required=True)
 
     args = parser.parse_args()
 
